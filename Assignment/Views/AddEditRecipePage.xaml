@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Views.AddEditRecipePage"
+             Title="添加/编辑食谱"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Label Text="食谱信息" FontSize="24" FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level1" x:Name="PageTitle"/>
+
+        <Entry x:Name="NameEntry" Placeholder="菜谱名称"
+               SemanticProperties.Description="请输入菜谱名称"/>
+        <Label x:Name="NameError" Text="名称不能为空" IsVisible="False" TextColor="Red" FontSize="Caption"/>
+
+        <Label Text="食材（每项一行）" FontAttributes="Bold" SemanticProperties.HeadingLevel="Level2"/>
+        <Editor x:Name="IngredientsEditor" Placeholder="鸡蛋 2个&#10;盐适量"
+                SemanticProperties.Description="每行一个食材，输入完成后换行继续添加"/>
+        <Label x:Name="IngredientsError" Text="食材不能为空" IsVisible="False" TextColor="Red" FontSize="Caption"/>
+
+        <Label Text="制作步骤" FontAttributes="Bold" SemanticProperties.HeadingLevel="Level2"/>
+        <Editor x:Name="InstructionsEditor" Placeholder="1. ...&#10;2. ..."
+                SemanticProperties.Description="按步骤输入，每行一个步骤"/>
+        <Label x:Name="InstructionsError" Text="步骤不能为空" IsVisible="False" TextColor="Red" FontSize="Caption"/>
+
+        <Picker x:Name="CategoryPicker" Title="选择分类"
+                SemanticProperties.Description="选择食谱所属分类">
+            <Picker.Items>
+                <x:String>Breakfast</x:String>
+                <x:String>Lunch</x:String>
+                <x:String>Dinner</x:String>
+                <x:String>Dessert</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button Text="保存" Clicked="OnSaveClicked" HorizontalOptions="Center"
+                SemanticProperties.Description="保存食谱信息"/>
+        <Button Text="返回" Clicked="OnBackClicked" HorizontalOptions="Center" BackgroundColor="Gray"
+                SemanticProperties.Description="返回主页"/>
+    </VerticalStackLayout>
+</ContentPage>

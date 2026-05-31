@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Views.SensorsPage"
+             Title="加速度计"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="加速度传感器" FontSize="24" FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level1" x:Name="PageTitle"/>
+        <Label Text="设备倾斜数据" FontAttributes="Bold" SemanticProperties.HeadingLevel="Level2"/>
+        <Label Text="{Binding SensorStatus}" />
+        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+            <Label Text="X:" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="{Binding X}" Grid.Row="0" Grid.Column="1"/>
+            <Label Text="Y:" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="{Binding Y}" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Z:" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="{Binding Z}" Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <Button Text="启动/停止" Command="{Binding ToggleSensorCommand}"
+                SemanticProperties.Description="启动或停止加速度传感器"/>
+        <Button Text="返回" Clicked="OnBackClicked" BackgroundColor="Gray"
+                SemanticProperties.Description="返回主页"/>
+    </VerticalStackLayout>
+</ContentPage>
