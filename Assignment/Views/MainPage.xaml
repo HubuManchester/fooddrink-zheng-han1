@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Assignment.ViewModels"
+             x:Class="Assignment.Views.MainPage"
+             Title="🍽️ Recipe Kitchen"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="➕" Clicked="OnAddRecipeClicked" 
+                     SemanticProperties.Description="Add new recipe" />
+        <ToolbarItem Text="📷" Clicked="OnScanClicked"
+                     SemanticProperties.Description="Open barcode scanner" />
+        <ToolbarItem Text="🗣️" Clicked="OnVoiceClicked"
+                     SemanticProperties.Description="Open voice assistant" />
+        <ToolbarItem Text="📊" Clicked="OnSensorsClicked"
+                     SemanticProperties.Description="Open accelerometer sensor" />
+        <ToolbarItem Text="⚙️" Clicked="OnSettingsClicked"
+                     SemanticProperties.Description="Open settings" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,*" Padding="10">
+        <VerticalStackLayout Spacing="10">
+            <Label Text="Recipe Kitchen" FontSize="24" FontAttributes="Bold"
+                   SemanticProperties.HeadingLevel="Level1" x:Name="MainTitle"/>
+            <SearchBar Text="{Binding SearchText}" 
+                       SearchCommand="{Binding SearchCommand}"
+                       Placeholder="🔍 Search recipes or ingredients..."
+                       SemanticProperties.Description="Enter keywords to search recipes"
+                       BackgroundColor="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}"/>
+            <Picker Title="📂 Category" 
+                    ItemsSource="{Binding Categories}"
+                    SelectedItem="{Binding SelectedCategory}"
+                    SelectedIndexChanged="OnCategoryChanged"
+                    SemanticProperties.Description="Select category to filter recipes"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}"/>
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1" 
+                        ItemsSource="{Binding FilteredRecipes}"
+                        SelectionMode="None"
+                        Margin="0,10,0,0">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="✏️ Edit" 
+                                           BackgroundColor="#3498db"
+                                           SemanticProperties.Description="Edit this recipe"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=EditRecipeCommand}"
+                                           CommandParameter="{Binding .}" />
+                                <SwipeItem Text="🗑️ Delete" 
+                                           BackgroundColor="#e74c3c"
+                                           SemanticProperties.Description="Delete this recipe"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=DeleteRecipeCommand}"
+                                           CommandParameter="{Binding .}" />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Frame Margin="0,5,0,5" 
+                               Padding="10"
+                               CornerRadius="15"
+                               BackgroundColor="{AppThemeBinding Light={StaticResource CardBackground}, Dark={StaticResource CardBackgroundDark}}"
+                               HasShadow="True">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:RecipeViewModel}}, Path=GoToDetailCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+                            <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,Auto">
+                                <Label Text="🍲" 
+                                       FontSize="48" 
+                                       VerticalOptions="Center"
+                                       Grid.RowSpan="2"
+                                       Grid.Column="0"/>
+                                <VerticalStackLayout Grid.Column="1" Grid.Row="0" Spacing="2">
+                                    <Label Text="{Binding Name}" 
+                                           FontSize="20" 
+                                           FontAttributes="Bold" 
+                                           TextColor="{AppThemeBinding Light={StaticResource LabelText}, Dark={StaticResource LabelTextDark}}"/>
+                                    <Label Text="{Binding Description}" 
+                                           FontSize="14" 
+                                           TextColor="Gray"
+                                           LineBreakMode="TailTruncation"
+                                           MaxLines="2"/>
+                                </VerticalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" Grid.Row="1" Spacing="15" Margin="0,5,0,0">
+                                    <Label Text="{Binding Calories, StringFormat='🔥 {0:F0} kcal'}" FontSize="12" TextColor="Gray"/>
+                                    <Label Text="{Binding Category}" FontSize="12" TextColor="{StaticResource Primary}"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>
