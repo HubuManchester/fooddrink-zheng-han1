@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:camera="clr-namespace:Camera.MAUI;assembly=Camera.MAUI"
+             x:Class="Assignment.Views.BarcodeScanPage"
+             Title="Barcode Scanner">
+
+    <Grid>
+        <camera:CameraView x:Name="cameraView"
+                           CamerasLoaded="CameraViewCamerasLoaded"
+                           BarCodeDetectionEnabled="True"
+                           BarCodeDetectionFrameRate="10"
+                           BarcodeDetected="OnBarcodeDetected"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Fill" />
+
+        <Border Stroke="Red" StrokeThickness="2" 
+                WidthRequest="250" HeightRequest="120" 
+                HorizontalOptions="Center" VerticalOptions="Center">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="10" />
+            </Border.StrokeShape>
+        </Border>
+
+        <VerticalStackLayout Padding="20" Spacing="10" VerticalOptions="End">
+            <Label x:Name="ResultLabel" Text="{Binding ScanStatus}" 
+                   BackgroundColor="White" TextColor="Black"
+                   HorizontalOptions="Center" Padding="10" />
+            <Button Text="Add to recipe" Command="{Binding LinkToRecipeCommand}" />
+            <Button Text="Back" Clicked="OnBackClicked" BackgroundColor="Gray" />
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

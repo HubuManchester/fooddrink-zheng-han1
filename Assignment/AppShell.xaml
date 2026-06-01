@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="Assignment.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:Assignment.Views"
+       Shell.FlyoutBehavior="Disabled"
+       Title="Assignment">
+
+    <ShellContent Title="Home" ContentTemplate="{DataTemplate views:MainPage}" Route="MainPage" />
+
+    <ShellContent Title="BarcodeScan" ContentTemplate="{DataTemplate views:BarcodeScanPage}" Route="BarcodeScanPage" />
+    <ShellContent Title="VoiceAssistant" ContentTemplate="{DataTemplate views:VoiceAssistantPage}" Route="VoiceAssistantPage" />
+    <ShellContent Title="Sensors" ContentTemplate="{DataTemplate views:SensorsPage}" Route="SensorsPage" />
+    <ShellContent Title="Settings" ContentTemplate="{DataTemplate views:SettingsPage}" Route="SettingsPage" />
+    <ShellContent Title="AddEditRecipe" ContentTemplate="{DataTemplate views:AddEditRecipePage}" Route="AddEditRecipePage" />
+    <ShellContent Title="RecipeDetail" ContentTemplate="{DataTemplate views:RecipeDetailPage}" Route="RecipeDetailPage" />
+
+</Shell>

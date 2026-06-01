@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Assignment.Views.SensorsPage"
+             Title="Accelerometer"
+             BackgroundColor="{AppThemeBinding Light={StaticResource LightBackground}, Dark={StaticResource DarkBackground}}">
+    <VerticalStackLayout Padding="20" Spacing="15">
+        <Label Text="Accelerometer Sensor" FontSize="24" FontAttributes="Bold"
+               SemanticProperties.HeadingLevel="Level1" x:Name="PageTitle"/>
+        <Label Text="Device tilt data" FontAttributes="Bold" SemanticProperties.HeadingLevel="Level2"/>
+        <Label Text="{Binding SensorStatus}" />
+        <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="Auto,*">
+            <Label Text="X:" Grid.Row="0" Grid.Column="0"/>
+            <Label Text="{Binding X}" Grid.Row="0" Grid.Column="1"/>
+            <Label Text="Y:" Grid.Row="1" Grid.Column="0"/>
+            <Label Text="{Binding Y}" Grid.Row="1" Grid.Column="1"/>
+            <Label Text="Z:" Grid.Row="2" Grid.Column="0"/>
+            <Label Text="{Binding Z}" Grid.Row="2" Grid.Column="1"/>
+        </Grid>
+        <Button Text="Start/Stop" Command="{Binding ToggleSensorCommand}"
+                SemanticProperties.Description="Start or stop accelerometer"/>
+        <Button Text="Back" Clicked="OnBackClicked" BackgroundColor="Gray"
+                SemanticProperties.Description="Return to home page"/>
+    </VerticalStackLayout>
+</ContentPage>
