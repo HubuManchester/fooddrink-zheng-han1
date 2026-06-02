@@ -67,6 +67,7 @@ Assignment/
 ├── App.xaml                # Application resources
 ├── AppShell.xaml           # Shell navigation and route registration
 └── MauiProgram.cs          # Dependency injection & app initialization
+
 🔧 Configuration Notes
 Android Manifest
 Platforms/Android/AndroidManifest.xml includes:
@@ -86,6 +87,7 @@ Platforms/Windows/Package.appxmanifest includes:
 xml
 <rescap:Capability Name="webcam" />
 <rescap:Capability Name="microphone" />
+
 🧪 Testing
 The app has been manually tested on:
 
