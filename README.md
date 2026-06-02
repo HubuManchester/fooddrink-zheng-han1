@@ -56,7 +56,7 @@ It allows users to manage recipes, scan barcodes, use voice assistance, and inte
 
 
 📂 Project Structure
-text
+
 Assignment/
 ├── Models/                 # Recipe entity
 ├── ViewModels/             # Recipe, BarcodeScan, VoiceAssistant, Sensors VMs
@@ -72,7 +72,6 @@ Assignment/
 Android Manifest
 Platforms/Android/AndroidManifest.xml includes:
 
-xml
 <uses-permission android:name="android.permission.CAMERA" />
 <uses-permission android:name="android.permission.RECORD_AUDIO" />
 <uses-permission android:name="android.permission.VIBRATE" />
@@ -84,7 +83,6 @@ xml
 Windows Manifest
 Platforms/Windows/Package.appxmanifest includes:
 
-xml
 <rescap:Capability Name="webcam" />
 <rescap:Capability Name="microphone" />
 
